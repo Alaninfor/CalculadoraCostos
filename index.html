@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de costos de importación (estimado)</title>
+
+  <!-- Los estilos están en style.css (mismo directorio) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+  <h1>Calculadora de costos de importación (Estimado)</h1>
+  <p class="subtitulo">
+    Estimá el costo puesto en tu depósito. Los porcentajes son editables:
+    verificá los vigentes para tu posición arancelaria.
+  </p>
+
+  <div class="grilla">
+
+    <!-- ================= COLUMNA IZQUIERDA: DATOS ================= -->
+    <div>
+
+      <!-- Bloque 1: mercadería -->
+      <section class="tarjeta">
+        <h2>Mercadería</h2>
+        <div class="fila">
+          <div>
+            <label for="precio">Precio FOB unitario (USD)</label>
+            <input id="precio" type="number" value="25" min="0" step="any">
+          </div>
+          <div>
+            <label for="cantidad">Cantidad</label>
+            <input id="cantidad" type="number" value="100" min="1" step="any">
+          </div>
+        </div>
+        <div class="fila">
+          <div>
+            <label for="flete">Flete internacional (USD)</label>
+            <input id="flete" type="number" value="300" min="0" step="any">
+          </div>
+          <div>
+            <label for="seguro">Seguro (% sobre FOB)</label>
+            <input id="seguro" type="number" value="1" min="0" step="any">
+          </div>
+        </div>
+        <div class="fila">
+          <div>
+            <label for="tipoCambio">Tipo de cambio</label>
+            <input id="tipoCambio" type="number" value="1400" min="0" step="any">
+          </div>
+          <div></div>
+        </div>
+      </section>
+
+      <!-- Bloque 2: tributos (porcentajes) -->
+      <section class="tarjeta separado">
+        <h2>Tributos (%)</h2>
+        <div class="fila">
+          <div>
+            <label for="die">Derecho de importación (DIE)</label>
+            <input id="die" type="number" value="20" step="any">
+          </div>
+          <div>
+            <label for="tasaEstadistica">Tasa de estadística</label>
+            <input id="tasaEstadistica" type="number" value="3" step="any">
+          </div>
+        </div>
+        <div class="fila">
+          <div>
+            <label for="iva">IVA</label>
+            <input id="iva" type="number" value="21" step="any">
+          </div>
+          <div>
+            <label for="ivaAdicional">Percepción IVA adicional</label>
+            <input id="ivaAdicional" type="number" value="20" step="any">
+          </div>
+        </div>
+        <div class="fila">
+          <div>
+            <label for="ganancias">Percepción Ganancias</label>
+            <input id="ganancias" type="number" value="6" step="any">
+          </div>
+          <div>
+            <label for="ingresosBrutos">Percepción Ingresos Brutos</label>
+            <input id="ingresosBrutos" type="number" value="2.5" step="any">
+          </div>
+        </div>
+      </section>
+
+      <!-- Bloque 3: gastos locales -->
+      <section class="tarjeta separado">
+        <h2>Gastos locales (USD)</h2>
+        <div class="fila">
+          <div>
+            <label for="honorarios">Honorarios despachante</label>
+            <input id="honorarios" type="number" value="250" min="0" step="any">
+          </div>
+          <div>
+            <label for="terminal">Terminal, depósito y puerto</label>
+            <input id="terminal" type="number" value="200" min="0" step="any">
+          </div>
+        </div>
+        <div class="fila">
+          <div>
+            <label for="fleteInterno">Flete interno</label>
+            <input id="fleteInterno" type="number" value="100" min="0" step="any">
+          </div>
+          <div>
+            <label for="otrosGastos">Otros gastos</label>
+            <input id="otrosGastos" type="number" value="0" min="0" step="any">
+          </div>
+        </div>
+      </section>
+
+      <!-- Botón que dispara el cálculo (ver script.js) -->
+      <button id="btnCalcular" type="button">Calcular</button>
+
+    </div>
+
+    <!-- ================= COLUMNA DERECHA: RESULTADOS ================= -->
+    <section class="tarjeta">
+      <h2>Resultado</h2>
+
+      <!-- script.js llena esta tabla al presionar "Calcular" -->
+      <table id="tablaResultado">
+        <tr><td class="vacio">Completá los datos y presioná "Calcular".</td></tr>
+      </table>
+
+      <div class="indicadores">
+        <div class="indicador"><b id="costoUnitarioUsd">-</b><span>Costo por unidad (USD)</span></div>
+        <div class="indicador"><b id="costoUnitarioArs">-</b><span>Costo por unidad (ARS)</span></div>
+        <div class="indicador"><b id="totalUsd">-</b><span>Total a desembolsar (Mercadería + Tributos + gastos locales en USD)</span></div>
+        <div class="indicador"><b id="totalArs">-</b><span>Total a desembolsar (Mercadería + Tributos + gastos locales en pesos)</span></div>
+      </div>
+
+      <p class="aviso">
+        Estimación orientativa.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<!-- La lógica está en script.js (mismo directorio) -->
+<script src="script.js"></script>
+</body>
+</html>

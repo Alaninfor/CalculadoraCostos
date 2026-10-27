@@ -1,0 +1,213 @@
+/* =========================================================
+   ESTILOS DE LA CALCULADORA
+   Tip: para cambiar la paleta, modificá solo las variables
+   de la sección 1 (colores).
+   ========================================================= */
+
+
+/* ---------- 1. COLORES (modo claro y modo oscuro) ---------- */
+:root {
+  --fondo:        #f6f7f9;  /* fondo de la página */
+  --tarjeta:      #ffffff;  /* fondo de cada bloque */
+  --texto:        #1c2430;  /* texto principal */
+  --texto-suave:  #667085;  /* etiquetas y textos secundarios */
+  --borde:        #dfe3e8;  /* líneas y bordes */
+  --acento:       #1f6f9f;  /* títulos de bloque y botón */
+  --destacado:    #0f7a4d;  /* números grandes del resultado */
+}
+
+/* Si el dispositivo está en modo oscuro, se usan estos colores */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo:        #14181d;
+    --tarjeta:      #1d232b;
+    --texto:        #e8ecf1;
+    --texto-suave:  #9aa5b1;
+    --borde:        #333c47;
+    --acento:       #5aaee0;
+    --destacado:    #4cc48d;
+    color-scheme: dark;
+  }
+}
+
+
+/* ---------- 2. BASE ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  max-width: 980px;      /* ancho máximo de la calculadora */
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0 0 4px;
+}
+
+.subtitulo {
+  color: var(--texto-suave);
+  margin: 0 0 18px;
+}
+
+
+/* ---------- 3. DISEÑO EN DOS COLUMNAS ---------- */
+.grilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* datos | resultado */
+  gap: 16px;
+}
+
+/* En pantallas angostas (celular) pasa a una sola columna */
+@media (max-width: 760px) {
+  .grilla {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---------- 4. TARJETAS (bloques) ---------- */
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.tarjeta.separado {
+  margin-top: 16px;     /* espacio entre bloques apilados */
+}
+
+.tarjeta h2 {
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+  color: var(--acento);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+/* ---------- 5. FORMULARIO ---------- */
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-bottom: 3px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto);
+  font: inherit;
+}
+
+
+/* ---------- 6. BOTÓN CALCULAR ---------- */
+#btnCalcular {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--acento);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#btnCalcular:hover {
+  filter: brightness(1.1);   /* se aclara un poco al pasar el mouse */
+}
+
+
+/* ---------- 7. TABLA DE RESULTADOS ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 7px 4px;
+  border-bottom: 1px solid var(--borde);
+}
+
+/* La segunda columna (los montos) va alineada a la derecha */
+td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;   /* números alineados */
+}
+
+/* Filas de subtotal (CIF, Total tributos) */
+tr.subtotal td {
+  font-weight: 600;
+}
+
+/* Fila del total final */
+tr.total td {
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-bottom: 0;
+}
+
+/* Mensaje inicial antes de calcular */
+td.vacio {
+  color: var(--texto-suave);
+  text-align: left;
+}
+
+
+/* ---------- 8. INDICADORES (números grandes) ---------- */
+.indicadores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.indicador {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.indicador b {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--destacado);
+}
+
+.indicador span {
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+}
+
+
+/* ---------- 9. AVISO LEGAL ---------- */
+.aviso {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  margin-top: 16px;
+}
